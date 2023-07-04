@@ -1,63 +1,25 @@
-let player = 0;
-let comp = 0;
+const game = () => {
+    let playerScore = 0;
+    let computerScore = 0;
 
+    const playGame = () => {
+        const rock = document.querySelector('.rock');
+        const paper = document.querySelector('.paper');
+        const scissors = document.querySelector('.scissors');
 
+        const playerOptions = [rock, paper, scissors];
+        const computerOptions = ['rock', 'paper', 'scissors'];
 
-function getComputerChoice() {
-    const choice = ["Rock", "Paper", "Scissors"];
+        playerOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const randomIndex = Math.floor(Math.random()*3);
+                const computerChoice = computerOptions[randomIndex];
+            })
+        });
+    }
 
-    return choice[Math.floor(Math.random()*3)];
-}
-
-function playRound(playerSelection, computerSelection) {
-    if(playerSelection.toUpperCase() === "ROCK") {
-        if(computerSelection.toUpperCase() === "PAPER") {
-            comp++;
-            //return comp;
-        } else if(computerSelection.toUpperCase() === "SCISSORS") {
-            player++;
-            //return player;
-        } else {
-            return "Draw";
-        }
-    } else if(playerSelection.toUpperCase() === "SCISSORS") {
-        if(computerSelection.toUpperCase() === "ROCK") {
-            comp++;
-            //return comp;
-        } else if(computerSelection.toUpperCase() === "PAPER") {
-            player++;
-            //return player;
-        } else {
-            return "Draw";
-        }
-    } else {
-        if(computerSelection.toUpperCase() === "SCISSORS") {
-            comp++;
-            //return comp;
-        } else if(computerSelection.toUpperCase() === "ROCK") {
-            player++;
-            //return player;
-        } else {
-            return "Draw";
-        }
+    const winner = (player, comp) => {
+        const playerScoreBoard = document.querySelector('.playerScore');
+        const compScoreBoard = document.querySelector('.computerScore');
     }
 }
-
-function game() {
-    for(let i = 0; i < 5; i++) {
-        const playerSelection = prompt("Enter your choice");
-        const computerSelection = getComputerChoice();
-        playRound(playerSelection,computerSelection);
-        console.log(player + ":" + comp);
-    }
-    
-    if(player > comp) {
-        return "Player wins!";
-    } else if(comp > player) {
-        return "Comp wins!";
-    } else {
-        return "Draw";
-    }
-}
-
-console.log(game());
