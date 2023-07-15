@@ -1,4 +1,48 @@
+body {
+    background-color: #392f5a;
+}
+
 img {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
+}
+
+button {
+    border-radius: 10%;
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #9dd9d2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5%;
+    font-size: 32px;
+}
+
+.result {
+    color: aliceblue;
+    font-size: 32px;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    background-color: #ff8811;
+    color: aliceblue;
+    width: 100%;
+    padding: 5px;
 }
