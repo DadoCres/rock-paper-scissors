@@ -1,25 +1,64 @@
-const game = () => {
-    let playerScore = 0;
-    let computerScore = 0;
+let playerScore = 0;
+let compScore = 0;
+const buttons = document.querySelectorAll('button');
+const reload = document.querySelector('.reload');
+const score = document.querySelector('.score');
+const res = document.querySelector('.result');
 
-    const playGame = () => {
-        const rock = document.querySelector('.rock');
-        const paper = document.querySelector('.paper');
-        const scissors = document.querySelector('.scissors');
+function compPlay() {
+    const choice = ['rock', 'paper', 'scissors'];
 
-        const playerOptions = [rock, paper, scissors];
-        const computerOptions = ['rock', 'paper', 'scissors'];
-
-        playerOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                const randomIndex = Math.floor(Math.random()*3);
-                const computerChoice = computerOptions[randomIndex];
-            })
-        });
-    }
-
-    const winner = (player, comp) => {
-        const playerScoreBoard = document.querySelector('.playerScore');
-        const compScoreBoard = document.querySelector('.computerScore');
-    }
+    return choice[Math.floor(Math.random()*choice.length)];
 }
+
+function playRound(playerSelection) {
+    let compChoice = compPlay();
+    let result = "Press an icon to play!";
+
+    if(playerScore+compScore < 5) {
+        if(playerSelection === 'rock') {
+            if(compChoice === 'paper') {
+                compScore++;
+            } else if(compChoice === 'scissors') {
+                playerScore++;
+            } else {
+                result += "It's a tie!";
+            }
+        } else if(playerSelection === 'paper') {
+            if(compChoice === 'scissors') {
+                compScore++;
+            } else if(compChoice === 'rock') {
+                playerScore++;
+            } else {
+                result += "It's a tie!";
+            }
+        } else {
+            if(compChoice === 'rock') {
+                compScore++;
+            } else if(compChoice === 'paper') {
+                playerScore++;
+            } else {
+                result += "\nIt's a tie!";
+            }
+        }
+    }
+
+    
+    score.textContent = playerScore + ' : ' + compScore;
+
+    if(playerScore+compScore === 5) {
+        if(playerScore > compScore) {
+            result = "Player wins!";
+        } else {
+            result = "Computer wins!";
+        }
+    }
+
+    res.textContent = result;
+}
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        playRound(button.class);
+    });
+});
